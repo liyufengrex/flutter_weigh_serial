@@ -45,4 +45,7 @@ class WeighSerialProvider {
       return false;
     }
   }
+
+  // 获取匹配上的设备
+  UsbSerialDevice? get selectedDevice => serialFactory.usbSerial.selectedDevice;
 }

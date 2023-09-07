@@ -14,6 +14,8 @@ abstract class UsbSerial {
   int parity = UsbPortConstant.parityNone;
   int readIntervalTimeout = 10;
 
+  UsbSerialDevice? selectedDevice;
+
   final controller = StreamController<Uint8List>.broadcast();
 
   /// 用于监听输出流

@@ -12,11 +12,13 @@ class UsbSerialAndroid extends UsbSerial {
   @override
   Future<bool> close() async {
     if (_port == null) {
+      selectedDevice = null;
       return true;
     }
     final result = await _port!.close();
     if (result) {
       _port = null;
+      selectedDevice = null;
     }
     _isOpened = !result;
     return result;
@@ -28,20 +30,7 @@ class UsbSerialAndroid extends UsbSerial {
     _port = await usb_serial_lib.UsbSerial.createFromDeviceId(
       int.parse(usbSerialDevice.connectPort),
     );
-  }
-
-  @override
-  Future<List<UsbSerialDevice>> getAvailablePorts() async {
-    final list = await usb_serial_lib.UsbSerial.listDevices();
-    return list
-        .map(
-          (e) => AndroidUsbDevice(
-            pid: e.pid,
-            vid: e.vid,
-            deviceId: e.deviceId,
-          ),
-        )
-        .toList();
+    selectedDevice = usbSerialDevice;
   }
 
   @override
@@ -85,5 +74,19 @@ class UsbSerialAndroid extends UsbSerial {
     return write(
       Uint8List.fromList(data.codeUnits),
     );
+  }
+
+  @override
+  Future<List<UsbSerialDevice>> getAvailablePorts() async {
+    final list = await usb_serial_lib.UsbSerial.listDevices();
+    return list
+        .map(
+          (e) => AndroidUsbDevice(
+            pid: e.pid,
+            vid: e.vid,
+            deviceId: e.deviceId,
+          ),
+        )
+        .toList();
   }
 }

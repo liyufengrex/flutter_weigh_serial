@@ -115,4 +115,5 @@ static Map<int, List<int>> weighDeviceList = {
 WeighSerialConfig.weighDeviceList[1111] = [1234,1235];
 ```
 ##### 具体使用可参考 example 示例
-![demo](https://github.com/liyufengrex/flutter_weigh_serial/blob/main/demo_weigh.gif)
+![demo](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f47c1dfc98cf424fa39fc92122c25528~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp#?w=1000&h=562&s=6914676&e=gif&f=76&b=f6f6f6)
+[技术点分析](https://juejin.cn/post/7275280984290852923)
